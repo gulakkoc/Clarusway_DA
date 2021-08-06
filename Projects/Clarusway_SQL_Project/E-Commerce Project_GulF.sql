@@ -49,7 +49,14 @@ ORDER BY "Number of Order"DESC;
 --3.Create a new column at combined_table as DaysTakenForDelivery that contains the date difference of Order_Date and Ship_Date.
 --Use "ALTER TABLE", "UPDATE" etc.
 
+ALTER TABLE COMBINE_TABLE
+ADD "DaysTakenForDelivery" INT
 
+UPDATE COMBINE_TABLE
+SET DaysTakenForDelivery = DATEDIFF(day,Order_Date, Ship_Date)
+
+SELECT DaysTakenForDelivery
+FROM COMBINE_TABLE
 
 
 --////////////////////////////////////
@@ -61,6 +68,12 @@ ORDER BY "Number of Order"DESC;
 SELECT TOP 1 Customer_Name, DATEDIFF(day,Order_Date, Ship_Date) Delivery_Date
 FROM COMBINE_TABLE
 ORDER BY Delivery_Date DESC;
+
+------
+
+SELECT TOP 1 Customer_Name, DaysTakenForDelivery
+FROM COMBINE_TABLE
+ORDER BY DaysTakenForDelivery DESC;
 
 
 --////////////////////////////////
