@@ -125,9 +125,11 @@ FROM production.brands
 
 
 
---7. In how many ways, a group of 3 boys and 2 girls can be formed out of a total of 5 boys and 5 girls?
+
 
 --8.A woman has 6 blouses, 4 skirts, and 5 pairs of shoes. How many different outfits consisting of a blouse, a skirt, and a pair of shoes can she wear?
+
+SELECT (6*4*5)
 
 --9. Serena Williams won the 2010 Wimbledon Ladies’ Singles Championship. For the seven matches she played in the tournament, her total number of first serves was 379, total number of good first serves was 256, and total number of double faults was 15.
 
