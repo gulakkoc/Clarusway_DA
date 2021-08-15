@@ -11,9 +11,37 @@ HAVING COUNT(SO.order_id) >= 2
 ORDER BY customer_id
 
 
---2. Find the total amount of each order which are placed in 2018. Then categorize them according to limits stated below.(You can use case when statements here)
+--2. Find the total amount of each order which are placed in 2018. Then categorize them according to limits stated below.(You can use case when 
+--statements here)
+--If the total amount of order    
+    
+--    less then 500 then "very low"
+--    between 500 - 1000 then "low"
+--    between 1000 - 5000 then "medium"
+--    between 5000 - 10000 then "high"
+--    more then 10000 then "very high" 
+
+SELECT SO.order_id, 
+		SUM(SOI.quantity*SOI.list_price) TOTAL_AMOUNT,
+
+		CASE
+			WHEN SUM(SOI.quantity*SOI.list_price) < 500 THEN 'very_low'
+			WHEN SUM(SOI.quantity*SOI.list_price) BETWEEN 500 AND 1000 THEN 'low'
+			WHEN SUM(SOI.quantity*SOI.list_price) BETWEEN 1000 AND 5000 THEN 'medium'
+			WHEN SUM(SOI.quantity*SOI.list_price) BETWEEN 5000 AND 10000 THEN 'high'
+			WHEN SUM(SOI.quantity*SOI.list_price) > 10000 THEN 'very high'
+		END ORDER_AMOUNT
+FROM sales.orders SO, sales.order_items SOI
+WHERE SO.order_id = SOI.order_id  AND YEAR(SO.order_date) = 2018
+GROUP BY SO.order_id
+ORDER BY SO.order_id
+
+
+
 
 --3. By using Exists Statement find all customers who have placed more than two orders.
+
+
 
 --4. Show all the products and their list price, that were sold with more than two units in a sales order.
 
