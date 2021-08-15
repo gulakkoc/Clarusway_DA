@@ -56,9 +56,74 @@ HAVING COUNT(SO.order_id) >2
 
 --4. Show all the products and their list price, that were sold with more than two units in a sales order.
 
+SELECT PP.product_id, PP.list_price
+FROM production.products PP
+WHERE PP.product_id IN (
+		SELECT product_id
+		FROM sales.order_items
+		WHERE quantity >= 2)
+ORDER BY product_id
+
+--SELECT PP.product_id over , pp.product_name, soi.order_id, soi.list_price
+--from production.products pp, sales.order_items soi
+--where pp.product_id = soi.product_id
+
+
+
 --5. Show the total count of orders per product for all times. (Every product will be shown in one line and the total order count will be shown besides it)
 
+SELECT PP.product_id, COUNT(DISTINCT order_id)
+FROM SALES.order_items, production.products PP
+GROUP BY PP.product_id
+
+SELECT
+    product_name,
+    count(distinct order_id) aa
+    FROM
+    production.products p
+LEFT JOIN sales.order_items o ON o.product_id = p.product_id
+group by
+product_name
+ORDER BY
+    aa;
+
+
+	SELECT DISTINCT PRODUCT_ID
+	FROM production.products
+	WHERE product_id IN 
+
+	(SELECT product_id, COUNT(DISTINCT order_id)
+	FROM SALES.order_items
+	GROUP BY PRODUCT_ID )
+
 --6. Find the products whose list prices are more than the average list price of products of all brands
+
+SELECT PP.product_name
+FROM production.products PP
+WHERE PP.list_price > ALL (
+						SELECT AVG(PP.LIST_PRICE)
+						FROM production.products PP
+						GROUP BY brand_id
+						)
+
+
+SELECT DISTINCT brand_id
+FROM production.products
+
+SELECT brand_id
+FROM production.brands
+
+
+
+
+
+
+
+
+
+
+
+
 
 --7. In how many ways, a group of 3 boys and 2 girls can be formed out of a total of 5 boys and 5 girls?
 
