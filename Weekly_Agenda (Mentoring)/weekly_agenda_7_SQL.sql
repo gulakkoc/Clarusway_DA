@@ -106,35 +106,3 @@ WHERE PP.list_price > ALL (
 						GROUP BY brand_id
 						)
 
-
-SELECT DISTINCT brand_id
-FROM production.products
-
-SELECT brand_id
-FROM production.brands
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
---8.A woman has 6 blouses, 4 skirts, and 5 pairs of shoes. How many different outfits consisting of a blouse, a skirt, and a pair of shoes can she wear?
-
-SELECT (6*4*5)
-
---9. Serena Williams won the 2010 Wimbledon Ladies’ Singles Championship. For the seven matches she played in the tournament, her total number of first serves was 379, total number of good first serves was 256, and total number of double faults was 15.
-
---a. Find the probability that her first serve is good.
-
---b. Find the conditional probability of double faulting, given that her first serve resulted in a fault.
-
---c. On what percentage of her service points does she double fault?
