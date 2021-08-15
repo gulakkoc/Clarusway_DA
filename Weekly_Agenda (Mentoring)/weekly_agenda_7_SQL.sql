@@ -42,6 +42,17 @@ ORDER BY SO.order_id
 --3. By using Exists Statement find all customers who have placed more than two orders.
 
 
+SELECT SC.customer_id, SC.first_name, SC.last_name
+FROM sales.customers SC
+WHERE EXISTS(
+SELECT  COUNT(SO.order_id) NUMBER_OF_ORDER
+FROM sales.orders SO
+WHERE SC.customer_id = SO.customer_id
+GROUP BY SO.customer_id
+HAVING COUNT(SO.order_id) >2
+)
+
+
 
 --4. Show all the products and their list price, that were sold with more than two units in a sales order.
 
